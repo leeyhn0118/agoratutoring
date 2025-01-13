@@ -1,0 +1,14 @@
+query viewer {
+  viewer {
+    id
+    roles
+    contactPhone
+    contactEmail
+    education {
+      level
+      description
+    }
+    languages
+    description
+  }
+}

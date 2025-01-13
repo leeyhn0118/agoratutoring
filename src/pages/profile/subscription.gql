@@ -1,0 +1,43 @@
+fragment PaymentFragment on Payment {
+  amount
+  currency
+  type
+  status
+  created
+}
+
+fragment SubscriptionPlanFragment on SubscriptionPlan {
+  id
+  name
+  value
+  type
+  order
+  features {
+    name
+    available
+  }
+}
+
+fragment UserSubscriptionFragment on UserSubscription {
+  id
+  endDate
+  subscriptionPlanId
+}
+
+query payments {
+  payments {
+    ...PaymentFragment
+  }
+}
+
+query subscriptions {
+  subscriptions {
+    ...SubscriptionPlanFragment
+  }
+}
+
+query userSubscription {
+  userSubscription {
+    ...UserSubscriptionFragment
+  }
+}

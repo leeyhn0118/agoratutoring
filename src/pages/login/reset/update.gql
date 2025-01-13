@@ -1,0 +1,7 @@
+mutation updateReset($input: UpdateResetInput!) {
+  updateReset(input: $input) {
+    reset {
+      success
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation updateVerify($input: UpdateVerifyInput!) {
+  updateVerify(input: $input) {
+    verify {
+      success
+    }
+  }
+}

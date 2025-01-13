@@ -1,0 +1,14 @@
+fragment PostCardCondensedFragment on Post {
+  id
+  type
+  creator {
+    name
+    avatarUrl
+  }
+  context {
+    distance
+    hasSaved
+  }
+  category
+  subjects
+}

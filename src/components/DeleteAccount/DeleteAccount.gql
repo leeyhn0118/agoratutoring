@@ -1,0 +1,7 @@
+mutation deleteViewer($input: DeleteViewerInput!) {
+  deleteViewer(input: $input) {
+    viewer {
+      id
+    }
+  }
+}

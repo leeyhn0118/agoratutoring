@@ -1,0 +1,7 @@
+mutation manageSubscription($input: ManageSubscriptionInput!) {
+  manageSubscription(input: $input) {
+    subscription {
+      url
+    }
+  }
+}

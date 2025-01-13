@@ -1,0 +1,49 @@
+{
+  "env": {
+    "es6": true,
+    "browser": true
+  },
+  "globals": {
+    "React": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["src", "./src"]],
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  },
+  "plugins": ["styled-components-a11y", "prettier"],
+  "extends": [
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:compat/recommended",
+    "prettier"
+  ],
+  "reportUnusedDisableDirectives": true,
+  "rules": {
+    "prettier/prettier": "error",
+    "react/function-component-definition": [0, "always"],
+    "no-warning-comments": [
+      "error",
+      { "terms": ["todo", "fixme", "any other term"], "location": "anywhere" }
+    ],
+    "import/prefer-default-export": [0, "always"],
+    "no-use-before-define": ["error", { "variables": false }],
+    "react/forbid-prop-types": [0, "always"],
+    "react-hooks/exhaustive-deps": [0, "always"],
+    "no-restricted-syntax": [0, "always"],
+    "guard-for-in": [0, "always"],
+    "no-restricted-exports": [0, "always"],
+    "react/jsx-props-no-spreading": [0, "always"],
+    "no-underscore-dangle": [0, "always"]
+  }
+}

@@ -1,0 +1,13 @@
+query viewer {
+  viewer {
+    hasUnreadMessages
+  }
+}
+
+subscription chatUpdated {
+  chatUpdated {
+    viewer {
+      hasUnreadMessages
+    }
+  }
+}

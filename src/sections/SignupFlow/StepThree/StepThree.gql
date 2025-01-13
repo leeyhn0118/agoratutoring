@@ -1,0 +1,13 @@
+query viewer {
+  viewer {
+    avatarUrl
+  }
+}
+
+mutation completeViewer {
+  completeViewer {
+    viewer {
+      roles
+    }
+  }
+}

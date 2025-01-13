@@ -1,0 +1,46 @@
+query post($input: PostInput!) {
+  post(input: $input) {
+    id
+    type
+    title
+    location {
+      geometry {
+        coordinates
+      }
+    }
+    creator {
+      id
+      name
+      username
+      description
+      contactPhone
+      contactEmail
+      created
+      education {
+        level
+        description
+      }
+      languages
+      avatarUrl
+      context {
+        isViewer
+      }
+    }
+    context {
+      distance
+      hasSaved
+    }
+    category
+    subjects
+    levels
+    courses
+    description
+    rate
+    created
+    experience
+    options {
+      willTravel
+      hasLocation
+    }
+  }
+}

@@ -1,0 +1,7 @@
+mutation logoutViewer {
+  logoutViewer {
+    viewer {
+      id
+    }
+  }
+}

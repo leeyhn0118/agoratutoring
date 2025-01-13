@@ -1,0 +1,15 @@
+#import 'src/fragments/PostCardNormal.gql'
+
+query posts($input: PostsInput!) {
+  posts(input: $input) {
+    edges {
+      node {
+        ...PostCardNormalFragment
+      }
+    }
+    page {
+      endCursor
+      hasNextPage
+    }
+  }
+}

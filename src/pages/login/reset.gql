@@ -1,0 +1,13 @@
+query viewer {
+  viewer {
+    id
+  }
+}
+
+mutation createReset($input: CreateResetInput!) {
+  createReset(input: $input) {
+    reset {
+      success
+    }
+  }
+}

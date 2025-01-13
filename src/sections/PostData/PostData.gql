@@ -1,0 +1,27 @@
+query viewer {
+  viewer {
+    id
+  }
+}
+
+mutation savePost($input: SavePostInput!) {
+  savePost(input: $input) {
+    post {
+      id
+      context {
+        hasSaved
+      }
+    }
+  }
+}
+
+mutation unsavePost($input: UnsavePostInput!) {
+  unsavePost(input: $input) {
+    post {
+      id
+      context {
+        hasSaved
+      }
+    }
+  }
+}

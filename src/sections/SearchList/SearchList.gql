@@ -1,0 +1,19 @@
+#import 'src/fragments/PostCardComplete.gql'
+
+query allPosts(
+  $filter: AllPostsFilter!
+  $sort: AllPostsSort!
+  $page: PageInput!
+) {
+  allPosts(filter: $filter, sort: $sort, page: $page) {
+    edges {
+      node {
+        ...PostCardCompleteFragment
+      }
+    }
+    page {
+      endCursor
+      hasNextPage
+    }
+  }
+}

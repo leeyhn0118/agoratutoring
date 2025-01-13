@@ -1,0 +1,15 @@
+query viewer {
+  viewer {
+    languages
+    goals
+  }
+}
+
+mutation updateViewer($input: UpdateViewerInput!) {
+  updateViewer(input: $input) {
+    viewer {
+      languages
+      goals
+    }
+  }
+}

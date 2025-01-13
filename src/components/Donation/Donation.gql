@@ -1,0 +1,7 @@
+mutation sendDonation($input: DonationInput!) {
+  sendDonation(input: $input) {
+    payment {
+      url
+    }
+  }
+}

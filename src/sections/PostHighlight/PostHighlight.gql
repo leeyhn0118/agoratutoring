@@ -1,0 +1,11 @@
+#import 'src/fragments/PostCardNormal.gql'
+
+query allPosts {
+  allPosts(page: { first: 10 }, sort: CLOSEST) {
+    edges {
+      node {
+        ...PostCardNormalFragment
+      }
+    }
+  }
+}

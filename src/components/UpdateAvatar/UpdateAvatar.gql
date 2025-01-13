@@ -1,0 +1,8 @@
+mutation updateViewer($input: UpdateViewerInput!) {
+  updateViewer(input: $input) {
+    viewer {
+      id
+      avatarUrl
+    }
+  }
+}

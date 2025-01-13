@@ -1,0 +1,66 @@
+name: Deploy to Vercel
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        default: 'development'
+        type: choice
+        options:
+          - development
+          - development-2
+          - development-3
+          - development-4
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+jobs:
+  deploy:
+    name: Deploy branch ${{ github.ref_name }} to ${{ github.event.inputs.environment }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Set VERCEL_PROJECT_ID dynamically
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "development" ] || [ "${{ github.event.inputs.environment }}" == "development-2" ]; then
+            echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL_PROJECT_ID }}" >> $GITHUB_ENV
+          elif [ "${{ github.event.inputs.environment }}" == "development-3" ] || [ "${{ github.event.inputs.environment }}" == "development-4" ]; then
+            echo "VERCEL_PROJECT_ID=${{ secrets.VERCEL2_PROJECT_ID }}" >> $GITHUB_ENV
+          fi
+
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+
+      - name: Deploy to Vercel
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "development" ] || [ "${{ github.event.inputs.environment }}" == "development-3" ]; then
+            vercel --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} --yes --prod --env ENVIRONMENT=${{ github.event.inputs.environment }}
+          elif [ "${{ github.event.inputs.environment }}" == "development-2" ] || [ "${{ github.event.inputs.environment }}" == "development-4" ]; then
+            vercel --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} --yes --env ENVIRONMENT=${{ github.event.inputs.environment }}
+          fi
+
+          DEPLOYMENT_ID=$(vercel ls --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} | grep -m 1 'https' | awk '{print $1}')
+          echo "DEPLOYMENT_ID=${DEPLOYMENT_ID}" >> $GITHUB_ENV
+
+      - name: Remove old alias and set new alias for deployment
+        run: |
+          if [ "${{ github.event.inputs.environment }}" == "development" ]; then
+            vercel alias rm development.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} --yes || true
+            vercel alias set $DEPLOYMENT_ID development.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }}
+          elif [ "${{ github.event.inputs.environment }}" == "development-2" ]; then
+            vercel alias rm development-2.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} --yes || true
+            vercel alias set $DEPLOYMENT_ID development-2.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }}
+          elif [ "${{ github.event.inputs.environment }}" == "development-3" ]; then
+            vercel alias rm development-3.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} --yes || true
+            vercel alias set $DEPLOYMENT_ID development-3.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }}
+          elif [ "${{ github.event.inputs.environment }}" == "development-4" ]; then
+            vercel alias rm development-4.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }} --yes || true
+            vercel alias set $DEPLOYMENT_ID development-4.agoratutoring.com --scope agora-tutoring --token ${{ secrets.VERCEL_TOKEN }}
+          fi

@@ -1,0 +1,31 @@
+fragment ViewerFragment on Viewer {
+  id
+  firstName
+  lastName
+  username
+  passwordRequired
+  socialMediaAccounts
+  email
+  contactPhone
+  contactEmail
+  education {
+    level
+    description
+  }
+  languages
+  description
+}
+
+query viewer {
+  viewer {
+    ...ViewerFragment
+  }
+}
+
+mutation updateViewer($input: UpdateViewerInput!) {
+  updateViewer(input: $input) {
+    viewer {
+      ...ViewerFragment
+    }
+  }
+}

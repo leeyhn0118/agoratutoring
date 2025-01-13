@@ -1,0 +1,56 @@
+fragment ChatFragment on Chat {
+  id
+  post {
+    id
+    title
+  }
+  recipients {
+    id
+    name
+    username
+    avatarUrl
+    context {
+      isViewer
+    }
+  }
+  latestMessage {
+    id
+    content
+  }
+  context {
+    hasUnreadMessages
+  }
+}
+
+query viewer($page: PageInput!) {
+  viewer {
+    id
+    chats(page: $page) {
+      edges {
+        node {
+          ...ChatFragment
+        }
+      }
+      page {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
+
+subscription chatUpdated {
+  chatUpdated {
+    chat {
+      ...ChatFragment
+    }
+  }
+}
+
+subscription chatCreated {
+  chatCreated {
+    chat {
+      ...ChatFragment
+    }
+  }
+}

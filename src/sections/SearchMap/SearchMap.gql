@@ -1,0 +1,11 @@
+query coordinates {
+  coordinates
+}
+
+query allPins($filter: AllPinsFilter!) {
+  allPins(filter: $filter) {
+    type
+    coordinates
+    posts
+  }
+}

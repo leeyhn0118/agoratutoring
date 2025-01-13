@@ -1,0 +1,43 @@
+query viewer {
+  viewer {
+    id
+    posts(sort: NEWEST) {
+      edges {
+        node {
+          id
+        }
+      }
+    }
+  }
+}
+
+query post($input: PostInput!) {
+  post(input: $input) {
+    title
+    description
+    rate
+    category
+    subjects
+    levels
+    courses
+    experience
+    location {
+      place
+      address
+    }
+    options {
+      hasLocation
+      willTravel
+    }
+    type
+    active
+  }
+}
+
+mutation updatePost($input: UpdatePostInput!) {
+  updatePost(input: $input) {
+    post {
+      id
+    }
+  }
+}

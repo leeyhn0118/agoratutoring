@@ -1,0 +1,7 @@
+mutation deleteReset($input: DeleteResetInput!) {
+  deleteReset(input: $input) {
+    reset {
+      success
+    }
+  }
+}

@@ -1,0 +1,33 @@
+#import 'src/fragments/PostCardComplete.gql'
+
+query user($input: UserInput!, $page: PageInput!, $sort: UserPostsSort!) {
+  user(input: $input) {
+    id
+    name
+    posts(page: $page, sort: $sort) {
+      edges {
+        node {
+          ...PostCardCompleteFragment
+        }
+      }
+      page {
+        endCursor
+        hasNextPage
+      }
+    }
+    username
+    description
+    contactPhone
+    contactEmail
+    created
+    education {
+      level
+      description
+    }
+    languages
+    avatarUrl
+    context {
+      isViewer
+    }
+  }
+}

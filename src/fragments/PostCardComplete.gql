@@ -1,0 +1,24 @@
+fragment PostCardCompleteFragment on Post {
+  id
+  type
+  creator {
+    name
+    avatarUrl
+  }
+  context {
+    distance
+    hasSaved
+  }
+  category
+  subjects
+  levels
+  courses
+  description
+  title
+  rate
+  experience
+  options {
+    willTravel
+    hasLocation
+  }
+}

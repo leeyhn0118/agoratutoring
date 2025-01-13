@@ -1,0 +1,7 @@
+mutation subscribe($input: SubscribeInput!) {
+  subscribe(input: $input) {
+    payment {
+      url
+    }
+  }
+}

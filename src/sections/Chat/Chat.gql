@@ -1,0 +1,93 @@
+fragment MessageFragment on Message {
+  id
+  created
+  content
+  chat {
+    id
+  }
+  sender {
+    name
+    avatarUrl
+    username
+  }
+  readers {
+    id
+  }
+  context {
+    isSender
+  }
+}
+
+query chat($input: ChatInput!, $page: PageInput!) {
+  chat(input: $input) {
+    id
+    context {
+      hasUnreadMessages
+    }
+    recipients {
+      id
+      name
+      avatarUrl
+      context {
+        isViewer
+      }
+    }
+    post {
+      id
+      title
+    }
+    messages(page: $page) {
+      edges {
+        node {
+          ...MessageFragment
+        }
+      }
+      page {
+        endCursor
+        hasNextPage
+      }
+    }
+  }
+}
+
+mutation readChat($input: ReadChatInput!) {
+  readChat(input: $input) {
+    chat {
+      id
+      context {
+        hasUnreadMessages
+      }
+    }
+    viewer {
+      id
+      hasUnreadMessages
+    }
+    messages {
+      ...MessageFragment
+    }
+  }
+}
+
+mutation createMessage($input: CreateMessageInput!) {
+  createMessage(input: $input) {
+    message {
+      ...MessageFragment
+    }
+  }
+}
+
+subscription messageUpdated {
+  messageUpdated {
+    message {
+      ...MessageFragment
+    }
+  }
+}
+
+subscription messageCreated {
+  messageCreated {
+    message {
+      ...MessageFragment
+    }
+  }
+}

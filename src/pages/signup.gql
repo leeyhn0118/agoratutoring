@@ -1,0 +1,13 @@
+query viewer {
+  viewer {
+    id
+  }
+}
+
+mutation createViewer($input: CreateViewerInput!) {
+  createViewer(input: $input) {
+    viewer {
+      id
+    }
+  }
+}

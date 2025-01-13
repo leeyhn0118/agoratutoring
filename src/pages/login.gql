@@ -1,0 +1,14 @@
+query viewer {
+  viewer {
+    id
+  }
+}
+
+mutation loginViewer($input: LoginViewerInput!) {
+  loginViewer(input: $input) {
+    viewer {
+      id
+      roles
+    }
+  }
+}

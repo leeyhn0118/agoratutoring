@@ -1,0 +1,13 @@
+query viewer {
+  viewer {
+    id
+  }
+}
+
+mutation customLoginViewer($input: CustomLoginViewerInput!) {
+  customLoginViewer(input: $input) {
+    viewer {
+      id
+    }
+  }
+}

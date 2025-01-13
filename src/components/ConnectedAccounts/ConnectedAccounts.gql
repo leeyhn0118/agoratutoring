@@ -1,0 +1,23 @@
+query viewer {
+  viewer {
+    id
+  }
+}
+
+mutation disconnectSocialMediaAccount(
+  $input: DisconnectSocialMediaAccountViewerInput!
+) {
+  disconnectSocialMediaAccountViewer(input: $input) {
+    viewer {
+      id
+    }
+  }
+}
+
+mutation connectSocialMediaAccount($input: CustomLoginViewerInput!) {
+  connectSocialMediaAccountViewer(input: $input) {
+    viewer {
+      id
+    }
+  }
+}
